@@ -1,60 +1,25 @@
-# Project 3: Rock, Paper, Scissors
-
 import random
 
-options = ("rock", "paper", "scissors")
-running = True
+def guess_the_number():
+    print("Welcome to the 'Guess the Number' game!")
+    print("I'm thinking of a number between 1 and 100.")
+    
+    number_to_guess = random.randint(1, 100)
+    guess = None
+    attempts = 0
+    
+    while guess != number_to_guess:
+        try:
+            guess = int(input("Make a guess: "))
+            attempts += 1
+            if guess < number_to_guess:
+                print("Too low!")
+            elif guess > number_to_guess:
+                print("Too high!")
+        except ValueError:
+            print("Please enter a valid number.")
+    
+    print(f"Congratulations! You've guessed the number in {attempts} attempts.")
 
-while running:
-
-    player = None
-    computer = random.choice(options)
-
-    while player not in options:
-        player = input("Enter a choice (rock, paper, scissors): ")
-
-    print(f"Player: {player}")
-    print(f"Computer: {computer}")
-
-    if player == computer:
-        print("It's a tie!")
-    elif player == "rock" and computer == "scissors":
-        print("You win!")
-    elif player == "paper" and computer == "rock":
-        print("You win!")
-    elif player == "scissors" and computer == "paper":
-        print("You win!")
-    else:
-        print("You lose!")
-
-    player_wins = 0
-    computer_wins = 0
-    while player_wins < 2 and computer_wins < 2:
-        player = None
-        computer = random.choice(options)
-
-        while player not in options:
-            player = input("Enter a choice (rock, paper, scissors): ")
-
-        print(f"Player: {player}")
-        print(f"Computer: {computer}")
-
-        if player == computer:
-            print("It's a tie!")
-        elif player == "rock" and computer == "scissors":
-            print("You win!")
-            player_wins += 1
-        elif player == "paper" and computer == "rock":
-            print("You win!")
-            player_wins += 1
-        elif player == "scissors" and computer == "paper":
-            print("You win!")
-            player_wins += 1
-        else:
-            print("You lose!")
-            computer_wins += 1
-    if player_wins == 2:
-        print("You won the best of 3: Thanks for playing!")
-    else:
-        print("The computer won the best of 3: Thanks for playing!")
-    running = False
+if __name__ == "__main__":
+    guess_the_number()
